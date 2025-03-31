@@ -4,6 +4,7 @@ namespace CardGame;
 
 public class UnitTest
 {
+    // Tests for different hands - Pair, Two Pair, Three of a Kind, Straight, Flush, Full House, Four of a Kind, Straight Flush, Royal Flush, Royal Straight Flush
     [Fact]
     public void TestIsPairPositive()
     {
@@ -24,8 +25,10 @@ public class UnitTest
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(hand, result);
+        Assert.Equal(hand, result.hand);
+
     }
+
     [Fact]
     public void TestIsPairNegative()
     {
@@ -41,7 +44,7 @@ public class UnitTest
 
         var result = CompareHands.IsPair(hand);
 
-        Assert.Null(result);
+        Assert.Null(result.hand);
     }
     [Fact]
     public void TestIsTwoPairPositive()
@@ -60,7 +63,7 @@ public class UnitTest
         var result = CompareHands.IsTwoPair(hand);
         //Assert
         Assert.NotNull(result);
-        Assert.Equal(hand, result);
+        Assert.Equal(hand, result.hand);
     }
     [Fact]
     public void TestIsTwoPairNegative()
@@ -78,7 +81,7 @@ public class UnitTest
         //Act
         var result = CompareHands.IsTwoPair(hand);
         //Assert
-        Assert.Null(result);
+        Assert.Null(result.hand);
     }
     [Fact]
     public void TestIsThreeOfAKindPositive()
@@ -97,7 +100,7 @@ public class UnitTest
         var result = CompareHands.IsThreeOfAKind(hand);
         //Assert
         Assert.NotNull(result);
-        Assert.Equal(hand, result);
+        Assert.Equal(hand, result.hand);
     }
     [Fact]
     public void TestIsThreeOfAKindNegative()
@@ -115,7 +118,7 @@ public class UnitTest
         //Act
         var result = CompareHands.IsThreeOfAKind(hand);
         //Assert
-        Assert.Null(result);
+        Assert.Null(result.hand);
     }
     [Fact]
     public void TestIsStraightPositive()
@@ -134,7 +137,7 @@ public class UnitTest
         var result = CompareHands.IsStraight(hand);
         //Assert
         Assert.NotNull(result);
-        Assert.Equal(hand, result);
+        Assert.Equal(hand, result.hand);
     }
     [Fact]
     public void TestIsStraightNegative()
@@ -152,7 +155,7 @@ public class UnitTest
         //Act
         var result = CompareHands.IsStraight(hand);
         //Assert
-        Assert.Null(result);
+        Assert.Null(result.hand);
     }
     [Fact]
     public void TestIsFlushPositive()
@@ -171,7 +174,7 @@ public class UnitTest
         var result = CompareHands.IsFlush(hand);
         //Assert
         Assert.NotNull(result);
-        Assert.Equal(hand, result);
+        Assert.Equal(hand, result.hand);
     }
     [Fact]
     public void TestIsFlushNegative()
@@ -189,7 +192,7 @@ public class UnitTest
         //Act
         var result = CompareHands.IsFlush(hand);
         //Assert
-        Assert.Null(result);
+        Assert.Null(result.hand);
     }
     [Fact]
     public void TestIsFullHousePositive()
@@ -207,7 +210,7 @@ public class UnitTest
         var result = CompareHands.IsFullHouse(hand);
         //Assert
         Assert.NotNull(result);
-        Assert.Equal(hand, result);
+        Assert.Equal(hand, result.hand);
     }
     [Fact]
     public void TestIsFullHouseNegative()
@@ -224,7 +227,7 @@ public class UnitTest
         //Act 
         var result = CompareHands.IsFullHouse(hand);
         //Assert
-        Assert.Null(result);
+        Assert.Null(result.hand);
     }
     [Fact]
     public void TestIsFourOfAKind()
@@ -243,7 +246,7 @@ public class UnitTest
         var result = CompareHands.IsFourOfAKind(hand);
         //Assert
         Assert.NotNull(result);
-        Assert.Equal(hand, result);
+        Assert.Equal(hand, result.hand);
     }
     [Fact]
     public void TestIsFourOfAKindNegative()
@@ -261,7 +264,7 @@ public class UnitTest
         //Act
         var result = CompareHands.IsFourOfAKind(hand);
         //Assert
-        Assert.Null(result);
+        Assert.Null(result.hand);
     }
     [Fact]
     public void TestIsStraightFlushPositive()
@@ -279,7 +282,7 @@ public class UnitTest
         var result = CompareHands.IsStraightFlush(hand);
         //Assert
         Assert.NotNull(result);
-        Assert.Equal(hand, result);
+        Assert.Equal(hand, result.hand);
     }
     [Fact]
     public void TestIsStraightFlushNegative()
@@ -297,7 +300,7 @@ public class UnitTest
         //Act
         var result = CompareHands.IsStraightFlush(hand);
         //Assert
-        Assert.Null(result);
+        Assert.Null(result.hand);
     }
     [Fact]
     public void TestIsRoyalFlushPositive()
@@ -316,7 +319,7 @@ public class UnitTest
         var result = CompareHands.IsRoyalFlush(hand);
         //Assert
         Assert.NotNull(result);
-        Assert.Equal(hand, result);
+        Assert.Equal(hand, result.hand);
     }
     [Fact]
     public void TestIsRoyalFlushNegative()
@@ -333,7 +336,7 @@ public class UnitTest
         //Act
         var result = CompareHands.IsRoyalFlush(hand);
         //Assert
-        Assert.Null(result);
+        Assert.Null(result.hand);
     }
     [Fact]
     public void TestIsRoyalStraightFlushPositive()
@@ -352,7 +355,7 @@ public class UnitTest
         var result = CompareHands.IsRoyalStraightFlush(hand);
         //Assert
         Assert.NotNull(result);
-        Assert.Equal(hand, result);
+        Assert.Equal(hand, result.hand);
     }
     [Fact]
     public void TestIsRoyalStraightFlushNegative()
@@ -370,9 +373,189 @@ public class UnitTest
         //Act
         var result = CompareHands.IsRoyalStraightFlush(hand);
         //Assert
-        Assert.Null(result);
+        Assert.Null(result.hand);
+    }
+    //Test with Theory - Pair 
+    [Theory]
+    [InlineData(new char[] { '♥', '2', '♦', '2', '♣', '3', '♠', '4', '♥', '5' }, true)] //Pair
+    [InlineData(new char[] { '♠', 'A', '♦', 'K', '♣', 'Q', '♥', 'J', '♠', '9' }, false)] //No Pair
+
+    public void TestIsPairTheoryUse(char[] cardData, bool expectedResult)
+    {
+        var pairCards = new List<Card>
+        {
+        new Card(cardData[0], cardData[1]),
+        new Card(cardData[2], cardData[3]),
+        new Card(cardData[4], cardData[5]),
+        new Card(cardData[6], cardData[7]),
+        new Card(cardData[8], cardData[9])
+        };
+        var hand = new Hand(pairCards);
+
+        //Act
+        var (resultHand, _) = CompareHands.IsPair(hand);
+        var result = resultHand != null;
+
+        //Assert
+        Assert.Equal(expectedResult, result);
+
+    }
+
+    //Test for hand 1 wins
+    [Fact]
+    public void TestCompareHandsHand1Wins()
+    {
+        // Arrange
+        var hand1 = new List<Card>
+    {
+        new Card('♥', '2'),
+        new Card('♦', '2'),
+        new Card('♣', '3'),
+        new Card('♠', '4'),
+        new Card('♥', '5'),
+    };
+
+        var hand2 = new List<Card>
+    {
+        new Card('♥', '6'),
+        new Card('♦', '2'),
+        new Card('♣', '7'),
+        new Card('♠', '8'),
+        new Card('♥', '9'),
+    };
+
+        // Act
+        var result = CompareHands.CheckHands(new Hand(hand1), new Hand(hand2));
+
+        // Assert
+        Assert.Equal(result.winningHand.Cards, hand1);
+    }
+    //Test for hand 2 wins
+    [Fact]
+    public void TestCompareHandsHand2Wins()
+    {
+        // Arrange
+        var hand1 = new List<Card>
+    {
+        new Card('♥', '8'),
+        new Card('♦', '2'),
+        new Card('♣', '3'),
+        new Card('♠', '4'),
+        new Card('♥', '5'),
+    };
+
+        var hand2 = new List<Card>
+    {
+        new Card('♥', '3'),
+        new Card('♦', '3'),
+        new Card('♣', '7'),
+        new Card('♠', '8'),
+        new Card('♥', '9'),
+    };
+
+        // Act
+        var result = CompareHands.CheckHands(new Hand(hand1), new Hand(hand2));
+
+        // Assert
+        Assert.Equal(result.winningHand.Cards, hand2);
+    }
+
+    //Test for draw - Exactly the same hand
+    [Fact]
+    public void TestIfDraw()
+    {
+        // Arrange
+        var hand1 = new List<Card>
+    {
+        new Card('♥', '8'),
+        new Card('♦', '2'),
+        new Card('♣', '3'),
+        new Card('♠', '4'),
+        new Card('♥', '5'),
+    };
+
+        var hand2 = new List<Card>
+    {
+        new Card('♥', '8'),
+        new Card('♦', '2'),
+        new Card('♣', '3'),
+        new Card('♠', '4'),
+        new Card('♥', '5'),
+    };
+
+        // Act
+        var result = CompareHands.CheckHands(new Hand(hand1), new Hand(hand2));
+
+        // Assert
+        Assert.Null(result.winningHand);
+    }
+
+
+    //Test for same pair but different highest card
+    [Fact]
+    public void TestCompareHighestCardWhereBothHavePair()
+    {
+        // Arrange
+        var hand1 = new List<Card>
+    {
+        new Card('♥', '4'),
+        new Card('♦', '4'),
+        new Card('♣', '9'),
+        new Card('♠', '8'),
+        new Card('♥', '5'),
+
+    };
+
+        var hand2 = new List<Card>
+    {
+        new Card('♥', '2'),
+        new Card('♦', '2'),
+        new Card('♣', '9'),
+        new Card('♠', '8'),
+        new Card('♥', '5'),
+    };
+
+        // Act
+        var result = CompareHands.CompareHighestCard(new Hand(hand1), new Hand(hand2));
+
+        // Assert
+        Assert.Equal(hand1, result.Cards);
+    }
+    //Test above. Something is wrong. hand 1 always wins in this test.
+
+
+    //Test forno pair - compare highest card
+    [Fact]
+    public void TestCompareHighestCard()
+    {
+        // Arrange
+        var hand1 = new List<Card>
+    {
+        new Card('♥', '2'),
+        new Card('♦', '3'),
+        new Card('♣', '9'),
+        new Card('♠', '8'),
+        new Card('♥', '5'),
+    };
+
+        var hand2 = new List<Card>
+    {
+        new Card('♥', '3'),
+        new Card('♦', '4'),
+        new Card('♣', '9'),
+        new Card('♠', '8'),
+        new Card('♥', '6'),
+    };
+
+        // Act
+        var result = CompareHands.CheckHands(new Hand(hand1), new Hand(hand2));
+
+        // Assert
+        Assert.Equal(hand2, result.winningHand.Cards);
     }
 }
+
+
 
 
 
